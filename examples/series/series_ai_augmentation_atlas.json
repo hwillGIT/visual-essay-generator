@@ -1,0 +1,50 @@
+{
+  "series_title": "AI_Augmentation_Architecture",
+  "topic_domain": "Human-AI Symbiosis",
+  "target_audience": "Expert",
+  "number_of_essays": 10,
+  "motif": "Atlas",
+  "text_density_mode": "MINIMAL",
+  "essays": [
+    {
+      "title": "The Centaur Model",
+      "concept": "Humans and AI combining to form a superior entity, like chess centaurs."
+    },
+    {
+      "title": "Cognitive Offloading",
+      "concept": "Using AI as an external hard drive for the brain, freeing up RAM for creativity."
+    },
+    {
+      "title": "The Prompt as Code",
+      "concept": "Natural language becoming the new syntax for programming reality."
+    },
+    {
+      "title": "Semantic Space",
+      "concept": "Visualizing high-dimensional vector space as a physical landscape we explore."
+    },
+    {
+      "title": "The Hallucination Feature",
+      "concept": "Why AI errors are actually the source of its creativity, similar to human dreaming."
+    },
+    {
+      "title": "Recursive Self-Improvement",
+      "concept": "The loop of AI building better AI, visualized as an infinite staircase."
+    },
+    {
+      "title": "The Alignment Problem",
+      "concept": "The difficulty of specifying goals, illustrated by the King Midas myth."
+    },
+    {
+      "title": "The Black Box",
+      "concept": "We don't know how deep learning works, looking into the abyss."
+    },
+    {
+      "title": "Synthetic Data",
+      "concept": "AI learning from AI-generated content, a closed loop ecosystem."
+    },
+    {
+      "title": "The Post-Turing World",
+      "concept": "A world where we can't distinguish human from machine, and why it doesn't matter."
+    }
+  ]
+}

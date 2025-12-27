@@ -1,0 +1,9 @@
+series_title: "My Series Name"
+topic_domain: "General Topic"
+target_audience: "General Audience"
+number_of_essays: 1
+motif: "Atlas"
+text_density_mode: "STANDARD"
+essays:
+  - title: "Essay 1 Title"
+    concept: "Core idea for essay 1"

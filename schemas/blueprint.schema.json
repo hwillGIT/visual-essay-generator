@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Visual Essay Blueprint",
+  "type": "object",
+  "properties": {
+    "title": { "type": "string" },
+    "core_thesis": { "type": "string" },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "visual_anchor": { "type": "string" },
+          "heading_locked": { "type": "string" },
+          "body_locked": { "type": "string" }
+        },
+        "required": ["visual_anchor", "heading_locked", "body_locked"]
+      }
+    }
+  },
+  "required": ["title", "slides"]
+}
