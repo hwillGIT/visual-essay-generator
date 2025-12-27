@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEG v2.0 (Replit Edition)</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f4f9; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee; }
+        .tab { padding: 10px 20px; cursor: pointer; border: none; background: none; font-weight: bold; color: #7f8c8d; }
+        .tab.active { color: #3498db; border-bottom: 2px solid #3498db; margin-bottom: -2px; }
+        .content { display: none; }
+        .content.active { display: block; }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 16px; width: 100%; }
+        button:hover { background: #2980b9; }
+        
+        pre { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; overflow-x: auto; white-space: pre-wrap; }
+        .error { color: #e74c3c; background: #fadbd8; padding: 10px; border-radius: 6px; margin-top: 10px; }
+        .success { color: #27ae60; background: #d5f5e3; padding: 10px; border-radius: 6px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎨 Visual Essay Generator</h1>
+    
+    <div class="tabs">
+        <button class="tab active" onclick="openTab('new')">1. New Essay</button>
+        <button class="tab" onclick="openTab('pdf')">2. PDF Extraction</button>
+        <button class="tab" onclick="openTab('lint')">3. Linter</button>
+    </div>
+
+    <!-- TAB 1: NEW ESSAY -->
+    <div id="new" class="content active">
+        <div class="form-group">
+            <label>Topic / Concept</label>
+            <input type="text" id="topic" placeholder="e.g. The Philosophy of Water">
+        </div>
+        <div class="form-group">
+            <label>Visual Motif</label>
+            <select id="motif">
+                <option value="Atlas">Atlas (Maps/Vintage)</option>
+                <option value="Mythic">Mythic (Statues/Marble)</option>
+                <option value="Systems">Systems (Blueprints/Tech)</option>
+                <option value="Sketchbook">Sketchbook (Hand-drawn)</option>
+                <option value="Didactic">Didactic (Textbook)</option>
+            </select>
+        </div>
+        <button onclick="generatePrompt()">Generate Operator Prompt</button>
+        
+        <div id="promptResult" style="display:none; margin-top:20px;">
+            <label>Copy this into Gemini:</label>
+            <pre id="promptOutput"></pre>
+        </div>
+    </div>
+
+    <!-- TAB 2: PDF EXTRACTION -->
+    <div id="pdf" class="content">
+        <p>Use this prompt to extract structured visual beats from a PDF in NotebookLM.</p>
+        <button onclick="loadPdfPrompt()">Load Instruction</button>
+        <div id="pdfResult" style="display:none; margin-top:20px;">
+            <pre id="pdfOutput"></pre>
+        </div>
+    </div>
+
+    <!-- TAB 3: LINTER -->
+    <div id="lint" class="content">
+        <div class="form-group">
+            <label>Paste your Blueprint Markdown here:</label>
+            <textarea id="blueprintInput" rows="10" placeholder="### Slide 1..."></textarea>
+        </div>
+        <button onclick="lintBlueprint()">Validate Blueprint</button>
+        <div id="lintResult"></div>
+    </div>
+
+</div>
+
+<script>
+    function openTab(id) {
+        document.querySelectorAll('.content').forEach(d => d.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    async function generatePrompt() {
+        const topic = document.getElementById('topic').value;
+        const motif = document.getElementById('motif').value;
+        
+        const res = await fetch('/api/generate_prompt', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({topic, motif})
+        });
+        const data = await res.json();
+        
+        document.getElementById('promptOutput').innerText = data.prompt;
+        document.getElementById('promptResult').style.display = 'block';
+    }
+
+    async function loadPdfPrompt() {
+        const res = await fetch('/api/get_pdf_instruction');
+        const data = await res.json();
+        document.getElementById('pdfOutput').innerText = data.instruction;
+        document.getElementById('pdfResult').style.display = 'block';
+    }
+
+    async function lintBlueprint() {
+        const blueprint = document.getElementById('blueprintInput').value;
+        const res = await fetch('/api/lint', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({blueprint})
+        });
+        const data = await res.json();
+        
+        const div = document.getElementById('lintResult');
+        div.innerHTML = '';
+        
+        if (data.status === 'valid') {
+            div.innerHTML = '<div class="success">✅ Blueprint looks good!</div>';
+        } else {
+            data.errors.forEach(err => {
+                div.innerHTML += `<div class="error">${err}</div>`;
+            });
+        }
+    }
+</script>
+
+</body>
+</html>

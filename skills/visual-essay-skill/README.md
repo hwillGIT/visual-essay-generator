@@ -9,9 +9,27 @@ The VEG workflow consists of two main stages, guided by specific prompts and tem
 1.  **Stage 1: Blueprint Generation**: Converts raw ideas, notes, or a topic into a structured "Blueprint". This blueprint defines the core thesis, narrative arc, and exactly what text and visuals go where.
 2.  **Stage 2: Rendering**: Takes the Blueprint and a specific "Motif" (visual style) to generate the final output (e.g., Midjourney prompts + final copy).
 
-## 🖥️ One-Stop Shop (Web Interface)
+## 🌍 Web Interface (Replit / Flask)
 
-The best way to use VEG is via the **Streamlit Web App**. It provides a visual interface for all workflows without needing to memorize commands.
+If you are running on **Replit** (or prefer a standard Web Server), use the Flask app:
+
+1.  **Run Command**:
+    ```bash
+    python3 skills/visual-essay-skill/app/replit_app.py
+    ```
+2.  **Access**: Open the Webview/Preview pane.
+3.  **Features**:
+    *   **New Essay**: Generate prompts instantly.
+    *   **PDF Extraction**: Get the NotebookLM instruction.
+    *   **Linter**: Paste your Markdown to validate blocks.
+
+*(Note: The `replit.nix` file is included for instant configuration on Replit.)*
+
+---
+
+## 🖥️ Streamlit Interface (Local)
+
+The best way to use VEG locally is via the **Streamlit Web App**. It provides a visual interface for all workflows without needing to memorize commands.
 
 1.  Run the app:
     ```bash
