@@ -12,3 +12,4 @@ When running the Stage 2 Renderer, copy the content of *one* of these style file
 *   **Systems**: Blueprint aesthetic, white lines on blue/black, technical.
 *   **Sketchbook**: Graphite, ink, watercolor, rough edges, white paper.
 *   **Didactic**: 1970s textbook, Helvetica, flat colors, clear diagrams.
+*   **Devotional**: Stained glass, illuminated manuscripts, gold leaf, sacred geometry.
