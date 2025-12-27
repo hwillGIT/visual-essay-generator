@@ -9,7 +9,24 @@ The VEG workflow consists of two main stages, guided by specific prompts and tem
 1.  **Stage 1: Blueprint Generation**: Converts raw ideas, notes, or a topic into a structured "Blueprint". This blueprint defines the core thesis, narrative arc, and exactly what text and visuals go where.
 2.  **Stage 2: Rendering**: Takes the Blueprint and a specific "Motif" (visual style) to generate the final output (e.g., Midjourney prompts + final copy).
 
-## 📚 How to Use (Workflow)
+## ⚡ One-Stop Shop (Interactive CLI)
+
+The easiest way to use VEG is via the interactive terminal app. It handles prompt generation, series processing, and PDF ingestion workflows for you.
+
+```bash
+python3 skills/visual-essay-skill/app/veg.py
+```
+
+This launches a menu where you can:
+1.  **Create a New Essay**: Generates the exact Operator prompt for your topic + style.
+2.  **Generate a Series**: Automatically reads your JSON/YAML specs and builds the prompt pack.
+3.  **Process PDFs**: Creates the specific "Extraction Prompt" for NotebookLM.
+
+---
+
+## 📚 Manual Workflow (Advanced)
+
+If you prefer running individual scripts:
 
 **[Read the Step-by-Step WORKFLOW GUIDE here](guides/WORKFLOW.md)**
 
