@@ -167,3 +167,45 @@ KEYWORDS (LOCKED):
 3.  **Refine**: Ask for edits to the blueprint (e.g., "Make Slide 3 more metaphorical").
 4.  **Render**: Ask the Operator to "Render this in the [Motif Name] style".
 5.  **Assembly**: Copy the prompts to Midjourney/Nano Banana and paste the LOCKED text as overlays.
+
+---
+
+# PART 6: RESEARCH PROTOCOLS
+
+These protocols are for analyzing *other* sources (PDFs, Articles) to prepare them for the Visual Essay pipeline.
+
+## 6.1 Master Instruction: The Researcher
+**Role**: Expert synthesizer.
+**Goal**: Find the *structure* and *metaphors* within a source text.
+
+**Output Format (The Research Note)**:
+1.  **Core Concept**: The single most important idea.
+2.  **Tension**: What is the conflict/paradox? (e.g., Old vs New, Chaos vs Order).
+3.  **Key Metaphors**: List 3 visual metaphors found in or inspired by the text.
+4.  **Key Quotes**: Extract 3-5 punchy, short quotes suitable for slides.
+5.  **Structure Suggestion**: A rough sequence of 4-6 points.
+
+## 6.2 Ingestion Template
+When summarizing a source, use this structure:
+
+**Source Title**: [Title]
+**Date**: [Date]
+**Type**: [PDF/Article/Video]
+
+### 1. Executive Summary
+[2-3 sentences]
+
+### 2. Visual Potential
+*   **Imagery**: [List specific images evoked by the text]
+*   **Atmosphere**: [Mood keywords]
+
+### 3. Structural Beats
+1.  [Point 1]
+2.  [Point 2]
+3.  [Point 3]
+4.  [Point 4]
+
+### 4. Raw Material (Quotes)
+*   "[Quote 1]"
+*   "[Quote 2]"
+*   "[Quote 3]"
