@@ -26,35 +26,48 @@ def load_motif(motif_name):
 def index():
     return render_template('index.html')
 
+def load_metaphor(metaphor_name):
+    if not metaphor_name or metaphor_name == "None (Auto)":
+        return ""
+    path = os.path.join(os.path.dirname(__file__), f"../skill/metaphors/{metaphor_name.lower()}.md")
+    return load_text(path)
+
 @app.route('/api/generate_prompt', methods=['POST'])
 def generate_prompt():
     data = request.json
     topic = data.get('topic')
     motif = data.get('motif')
+    metaphor = data.get('metaphor', 'None (Auto)')
     
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     motif_content = load_motif(motif)
+    metaphor_content = load_metaphor(metaphor)
     
+    metaphor_instr = f"3. Apply the **{metaphor}** conceptual mappings (see below)." if metaphor != "None (Auto)" else "3. Choose an appropriate conceptual metaphor."
+    metaphor_section = f"\n## CONTEXT: METAPHOR ({metaphor})\n{metaphor_content}\n" if metaphor_content else ""
+
     prompt = f"""# VEG OPERATOR PROMPT
 # Generated: {timestamp}
 # Topic: {topic}
 # Motif: {motif}
+# Metaphor: {metaphor}
 
 You are the **Visual Essay Generator (VEG) Operator**.
 
 **Mission**:
 1. Create a "Visual Essay Blueprint" for the topic: "{topic}".
 2. Use the **{motif}** visual motif logic (see below).
-3. Follow the strict "LOCKED" block format for text integrity.
+{metaphor_instr}
+4. Follow the strict "LOCKED" block format for text integrity.
 
 ---
 
 ## CONTEXT: MOTIF ({motif})
 {motif_content}
-
+{metaphor_section}
 ## INSTRUCTION
 Generate a Stage 1 Blueprint with 4-6 slides. 
-Ensure the "Visual Anchor" for each slide aligns with the {motif} aesthetic.
+Ensure the "Visual Anchor" for each slide aligns with the {motif} aesthetic and {metaphor if metaphor != "None (Auto)" else "chosen"} metaphor.
 """
     return jsonify({"prompt": prompt})
 

@@ -9,6 +9,12 @@
 3.  **Lighting**: Flat, digital, glowing elements.
 4.  **Composition**: Isometric projections, exploded views, organized chaos.
 
+## Design Principles (Art Direction)
+*   **Typography**: Monospace fonts (Courier, Roboto Mono).
+*   **Layout**: Modular, data-dense, thin lines.
+*   **Color Theory**: Monochromatic Blue/Black with High Contrast White.
+
+
 ## Midjourney Tokens
 `technical blueprint style`, `white lines on blue background`, `isometric schematic`, `diagrammatic illustration`, `vector lines`, `precise geometry`, `--no texture`
 

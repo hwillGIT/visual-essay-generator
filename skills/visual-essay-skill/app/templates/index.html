@@ -52,6 +52,16 @@
                 <option value="Didactic">Didactic (Textbook)</option>
             </select>
         </div>
+        <div class="form-group">
+            <label>Conceptual Metaphor</label>
+            <select id="metaphor">
+                <option value="None (Auto)">Auto-Select</option>
+                <option value="Nature">Nature (Roots/Rivers)</option>
+                <option value="Architecture">Architecture (Foundations/Bridges)</option>
+                <option value="Machine">Machine (Gears/Circuits)</option>
+                <option value="Alchemy">Alchemy (Transformation/Fire)</option>
+            </select>
+        </div>
         <button onclick="generatePrompt()">Generate Operator Prompt</button>
         
         <div id="promptResult" style="display:none; margin-top:20px;">
@@ -92,11 +102,12 @@
     async function generatePrompt() {
         const topic = document.getElementById('topic').value;
         const motif = document.getElementById('motif').value;
+        const metaphor = document.getElementById('metaphor').value;
         
         const res = await fetch('/api/generate_prompt', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({topic, motif})
+            body: JSON.stringify({topic, motif, metaphor})
         });
         const data = await res.json();
         

@@ -9,6 +9,12 @@
 3.  **Lighting**: Natural daylight.
 4.  **Composition**: Loose, organic, margins visible.
 
+## Design Principles (Art Direction)
+*   **Typography**: Handwritten or Typewriter.
+*   **Layout**: Freeform, scrapbook style.
+*   **Color Theory**: Neutral base with single color pop.
+
+
 ## Midjourney Tokens
 `pencil and ink sketch`, `rough graphite drawing`, `on notebook paper`, `architectural sketch style`, `loose lines`, `watercolor wash`, `--stylize 50`
 

@@ -54,34 +54,46 @@ def main():
         with col1:
             topic = st.text_input("Enter Topic/Concept:", placeholder="e.g. The Philosophy of Water")
         with col2:
-            motif = st.selectbox("Select Motif Style:", ["Atlas", "Mythic", "Systems", "Sketchbook", "Didactic"])
+            motif = st.selectbox("Select Visual Style (Motif):", ["Atlas", "Mythic", "Systems", "Sketchbook", "Didactic"])
+            metaphor = st.selectbox("Select Conceptual Metaphor:", ["None (Auto)", "Nature", "Architecture", "Machine", "Alchemy"])
         
         if st.button("Generate Operator Prompt", type="primary"):
             if not topic:
                 st.error("Please enter a topic.")
             else:
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                
+                # Load Metaphor context if selected
+                metaphor_context = ""
+                if metaphor != "None (Auto)":
+                    meta_path = os.path.join(os.path.dirname(__file__), f"../skill/metaphors/{metaphor.lower()}.md")
+                    if os.path.exists(meta_path):
+                        with open(meta_path, 'r') as f:
+                            metaphor_context = f"\n## CONTEXT: METAPHOR ({metaphor})\n{f.read()}\n"
+
                 prompt = f"""
 # VEG OPERATOR PROMPT
 # Generated: {timestamp}
 # Topic: {topic}
 # Motif: {motif}
+# Metaphor: {metaphor}
 
 You are the **Visual Essay Generator (VEG) Operator**.
 
 **Mission**:
 1. Create a "Visual Essay Blueprint" for the topic: "{topic}".
 2. Use the **{motif}** visual motif logic (see below).
-3. Follow the strict "LOCKED" block format for text integrity.
+{f"3. Apply the **{metaphor}** conceptual mappings (see below)." if metaphor != "None (Auto)" else "3. Choose an appropriate conceptual metaphor."}
+4. Follow the strict "LOCKED" block format for text integrity.
 
 ---
 
 ## CONTEXT: MOTIF ({motif})
 (Paste the contents of skills/visual-essay-skill/skill/motifs/{motif.lower()}.style.md here)
-
+{metaphor_context}
 ## INSTRUCTION
 Generate a Stage 1 Blueprint with 4-6 slides. 
-Ensure the "Visual Anchor" for each slide aligns with the {motif} aesthetic.
+Ensure the "Visual Anchor" for each slide aligns with the {motif} aesthetic and {metaphor if metaphor != "None (Auto)" else "chosen"} metaphor.
 """
                 st.success("Prompt Generated!")
                 st.code(prompt, language="markdown")
